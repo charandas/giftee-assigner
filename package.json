@@ -1,0 +1,44 @@
+{
+  "name": "giftee-assigner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Charandas Batra-Daitch",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-if": "^2.0.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "jspm": "^0.16.14",
+    "systemjs-builder": "^0.14.10",
+    "yargs": "^3.29.0"
+  },
+  "jspm": {
+    "dependencies": {
+      "angular": "github:angular/bower-angular@^1.4.7",
+      "angular-ui-router": "github:angular-ui/ui-router@^0.2.15",
+      "angularfire": "github:firebase/angularfire@^1.1.3",
+      "css": "github:systemjs/plugin-css@^0.1.19",
+      "firebase": "github:firebase/firebase-bower@^2.3.1",
+      "jquery": "github:components/jquery@^2.1.4",
+      "julianshapiro/velocity": "github:julianshapiro/velocity@^1.2.3",
+      "lumapps/lumX": "github:lumapps/lumX@^0.3.95",
+      "mdi": "npm:mdi@^1.2.65",
+      "moment": "npm:moment@^2.10.6",
+      "text": "github:systemjs/plugin-text@^0.0.3",
+      "thoughtbot/bourbon": "github:thoughtbot/bourbon@^4.2.6"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4",
+      "traceur": "github:jmcriffey/bower-traceur@0.0.92",
+      "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92"
+    }
+  }
+}
