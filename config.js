@@ -13,7 +13,9 @@ System.config({
   },
 
   map: {
+    "Popmotion/popmotion": "github:Popmotion/popmotion@3.6.2",
     "angular": "github:angular/bower-angular@1.4.7",
+    "angular-animate": "github:angular/bower-angular-animate@1.4.7",
     "angular-ui-router": "github:angular-ui/ui-router@0.2.15",
     "angularfire": "github:firebase/angularfire@1.1.3",
     "babel": "npm:babel-core@5.8.33",
@@ -31,6 +33,9 @@ System.config({
     "traceur": "github:jmcriffey/bower-traceur@0.0.92",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
     "github:angular-ui/ui-router@0.2.15": {
+      "angular": "github:angular/bower-angular@1.4.7"
+    },
+    "github:angular/bower-angular-animate@1.4.7": {
       "angular": "github:angular/bower-angular@1.4.7"
     },
     "github:jspm/nodelibs-assert@0.1.0": {

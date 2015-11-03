@@ -1,20 +1,25 @@
-import angular from 'angular'
-import 'firebase'
+export var AppCtrl = function ($scope, $state, $http, $firebaseObject, FIREBASE_ROOT_URL) {
 
-export var AppCtrl = function ($scope, $http, $firebaseObject, FirebaseUrl) {
+    this.password = null
 
-    console.log(FirebaseUrl)
+    var ref = new Firebase(FIREBASE_ROOT_URL + '/password');
+    $scope.toCompare = $firebaseObject(ref);
 
-    var ref = new Firebase(FirebaseUrl);
-    $scope.data = $firebaseObject(ref);
+    $scope.toCompare.$loaded()
+    .then(function() {
+        console.log($scope.toCompare)
+    })
+    .catch(function(err) {
+        console.error(err)
+    })
 
-    $scope.data.$loaded()
-      .then(function() {
-        console.log($scope.data);
-      })
-      .catch(function(err) {
-        console.error(err);
-      });
+    this.login = () => {
+        console.log(this.password + ":" + $scope.toCompare.$value)
+        if (this.password === $scope.toCompare.$value) {
+            $state.go('members')
+        }
+    }
+
 }
 
-AppCtrl.$inject = ['$scope', '$http', '$firebaseObject', 'FirebaseUrl']
+AppCtrl.$inject = ['$scope', '$state', '$http', '$firebaseObject', 'FIREBASE_ROOT_URL']
