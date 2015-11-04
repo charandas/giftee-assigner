@@ -17,7 +17,7 @@ html, body, #container {
     height: 100%;
 }
 
-.coin {
+/*.coin {
     background: $yellow-300;
     width: 100px;
     height: 100px;
@@ -28,14 +28,29 @@ html, body, #container {
     .ng-hide-add { animation:0.5s lightSpeedOut ease; }
 
     .ng-hide-remove { animation:0.5s flipInX ease; }
+}*/
+
+.circular {
+    flex-grow: 1;
+    flex-shrink: 2;
+    flex-basis: 200px;
+    width: 200px;
+    //height:200px;
+    border-radius:50%;
+    margin:25px;
 }
 
-.coin.heads {
-    background: $deep-orange-900;
+.circular img {
+  border-radius:50%;
+  transition: transform 0.5s ease;
+  transform: scale(0.8);
 }
 
-.coin.tails {
-    background: $lime-800;
+.circular img:hover {
+  transform: scale(.9);
+  /*
+  transition: all 400ms cubic-bezier(0.250, 0.460, 0.450, 0.940);
+  */
 }
 
 .aligner {

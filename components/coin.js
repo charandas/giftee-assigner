@@ -1,6 +1,7 @@
 import coinsTpl from './coinsTpl.html!text'
+import angular from 'angular'
 
-export var CoinComponent = function($timeout, CoinSvc) {
+export var CoinComponent = function($timeout, CoinSvc, MA_IMAGES) {
     return {
         restrict: 'A',
         scope: {
@@ -9,29 +10,36 @@ export var CoinComponent = function($timeout, CoinSvc) {
         template: coinsTpl,
         link: function (scope, element, attrs, controller) {
 
-            scope.coins = null
+            var maImages = angular.copy(MA_IMAGES)
+            shuffle(maImages)
 
-            scope.tossCoins = () => {
-                if (scope.coins) return
+            var selectedImages = maImages.splice(0,3)
+            scope.coins =  selectedImages.map(function(item) { return {image: item} })
 
-                scope.coins = [coinFlip(), coinFlip(), coinFlip()]
-                CoinSvc.rows.push({row: scope.row, coins: scope.coins})
-            }
+            scope.reveal = (coin) => {
 
-            scope.coinClass = (coinValue) => {
-                if (coinValue === 'T') {
-                    return 'tails'
-                } else if (coinValue === 'H') {
-                    return 'heads'
-                }
             }
         }
     }
 }
 
-function coinFlip() {
-    return (Math.floor(Math.random() * 2) == 0) ? 'H' : 'T';
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex ;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 }
 
-
-CoinComponent.$inject = ['$timeout', 'CoinSvc']
+CoinComponent.$inject = ['$timeout', 'CoinSvc', 'MA_IMAGES']

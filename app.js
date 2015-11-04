@@ -49,6 +49,15 @@ export var app = angular.module('gifteeApp',
         console.log('Running...')
     })
     .constant('FIREBASE_ROOT_URL', 'https://giftee-app.firebaseio.com/')
+    .constant('MA_IMAGES', [
+            'anandamayi1_eusyna.jpg',
+            'anandamayi2_fgsg4n.jpg',
+            'anandamayi4_y53fcc.jpg',
+            'anandamayi6_myqhzp.jpg',
+            'anandamayi7_svv91h.jpg'
+        ]
+        .map(function(item) {return 'http://res.cloudinary.com/city-corridor/image/upload/v1446662780/' + item})
+    )
     .factory('CoinSvc', CoinSvc)
     .directive('coinComponent', CoinComponent)
 

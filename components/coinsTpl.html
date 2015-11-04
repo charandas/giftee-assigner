@@ -1,11 +1,5 @@
-<div ng-click="tossCoins()" flex-item-align="center" flex-container="row" class="mt++">
-    <div ng-class="coinClass(coins[0])" class="coin text-center aligner mr++">
-        <span class="fs-title display-block" ng-show="coins">{{coins[0]}}</span>
-    </div>
-    <div ng-class="coinClass(coins[1])" class="coin text-center aligner mr++">
-        <span class="fs-title display-block" ng-show="coins">{{coins[1]}}</span>
-    </div>
-    <div ng-class="coinClass(coins[2])" class="coin text-center aligner">
-        <span class="fs-title display-block" ng-show="coins">{{coins[2]}}</span>
+<div flex-item-align="center" flex-container="row" class="mt++">
+    <div ng-repeat="coin in coins" ng-click="reveal(coin)" class="circular text-center aligner mr++">
+        <img ng-src="{{coin.image}}"></img>
     </div>
 </div>

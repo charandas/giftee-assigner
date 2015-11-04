@@ -42,6 +42,7 @@ gulp.task('styles', function () {
 
     return gulp.src('./styles/main.scss')
         .pipe(sass({
+            errLogToConsole: true,
             includePaths: [
                 './jspm_packages/github/thoughtbot/bourbon@4.2.6/app/assets/stylesheets',
                 './jspm_packages/github/lumapps/lumX@0.3.95/dist/scss',
