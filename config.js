@@ -20,6 +20,7 @@ System.config({
     "angularfire": "github:firebase/angularfire@1.1.3",
     "babel": "npm:babel-core@5.8.33",
     "babel-runtime": "npm:babel-runtime@5.8.29",
+    "cgross/angular-busy": "github:cgross/angular-busy@4.1.3",
     "core-js": "npm:core-js@1.2.4",
     "css": "github:systemjs/plugin-css@0.1.19",
     "firebase": "github:firebase/firebase-bower@2.3.1",
@@ -30,6 +31,7 @@ System.config({
     "moment": "npm:moment@2.10.6",
     "text": "github:systemjs/plugin-text@0.0.3",
     "thoughtbot/bourbon": "github:thoughtbot/bourbon@4.2.6",
+    "tobiasahlin/SpinKit": "github:tobiasahlin/SpinKit@1.2.2",
     "traceur": "github:jmcriffey/bower-traceur@0.0.92",
     "traceur-runtime": "github:jmcriffey/bower-traceur-runtime@0.0.92",
     "github:angular-ui/ui-router@0.2.15": {

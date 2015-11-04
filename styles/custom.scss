@@ -7,13 +7,14 @@ html, body, #container {
     background-color: $blue-grey-300;
 }
 
+.element::-webkit-scrollbar { width: 0 !important }
+
 // TODO: this is a hack
 #login-container {
     height: 75%;
 }
 
 #game-container {
-    width: 100%;
     height: 100%;
 }
 
@@ -23,11 +24,7 @@ html, body, #container {
     height: 100px;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
-    border-radius: 50%;
-
-    .ng-hide-add { animation:0.5s lightSpeedOut ease; }
-
-    .ng-hide-remove { animation:0.5s flipInX ease; }
+    border-radius: 50%;    
 }*/
 
 .circular {
@@ -44,6 +41,16 @@ html, body, #container {
   border-radius:50%;
   transition: transform 0.5s ease;
   transform: scale(0.8);
+
+  .ng-hide-add { animation:0.5s lightSpeedOut ease; }
+
+  .ng-hide-remove { animation:0.5s flipInX ease; }
+}
+
+.circular span {
+  .ng-hide-add { animation:0.5s lightSpeedOut ease; }
+
+  .ng-hide-remove { animation:0.5s flipInX ease; }
 }
 
 .circular img:hover {

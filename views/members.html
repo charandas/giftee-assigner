@@ -1,15 +1,9 @@
 <div id="game-container" flex-align="center" flex-container="column" flex-align="space-between center">
     <div flex-item-align="center" flex-container="row" class="mt++">
-        <span class="fs-display-2 display-block">Secret Ma App</span>
+        <span class="aligner fs-display-2 display-block">Secret Ma App</span>
     </div>
 
-    <div flex-item-align="center" flex-container="column" class="mt++">
-        <div coin-component row="1"></div>
-        <div coin-component row="2"></div>
-        <div coin-component row="3"></div>
-        <div coin-component row="4"></div>
-        <div coin-component row="5"></div>
-        <div coin-component row="6"></div>
+    <div cg-busy="vm.randomUserPromise" flex-item-align="center" flex-container="row" class="mt++" user="vm.userToAssign">
+        <div ng-if="vm.userToAssign" coin-component user="vm.userToAssign"></div>
     </div>
-
 </div>

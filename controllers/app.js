@@ -1,5 +1,6 @@
 export var AppCtrl = function ($scope, $state, $http, $firebaseObject, FIREBASE_ROOT_URL) {
 
+    this.player = null
     this.password = null
 
     var ref = new Firebase(FIREBASE_ROOT_URL + '/password');
@@ -14,9 +15,8 @@ export var AppCtrl = function ($scope, $state, $http, $firebaseObject, FIREBASE_
     })
 
     this.login = () => {
-        console.log(this.password + ":" + $scope.toCompare.$value)
         if (this.password === $scope.toCompare.$value) {
-            $state.go('members')
+            $state.go('members', {player: this.player.toLowerCase()})
         }
     }
 

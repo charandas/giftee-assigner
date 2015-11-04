@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     path = require('path'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
+    autoprefixer = require('gulp-autoprefixer'),
     Builder = require('systemjs-builder'),
     notify = require('gulp-notify');
 
@@ -46,10 +47,15 @@ gulp.task('styles', function () {
             includePaths: [
                 './jspm_packages/github/thoughtbot/bourbon@4.2.6/app/assets/stylesheets',
                 './jspm_packages/github/lumapps/lumX@0.3.95/dist/scss',
+                './jspm_packages/github/tobiasahlin/SpinKit@1.2.2/scss',
                 './jspm_packages/npm/mdi@1.2.65/scss'
             ],
-            sourceMap: true
+            // sourceMap: true
 
+        }))
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
         }))
         .pipe(gulp.dest('./styles/'))
         .pipe(notify("Compiled sass successfully"));

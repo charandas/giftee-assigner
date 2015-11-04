@@ -5,7 +5,7 @@ export var CoinComponent = function($timeout, CoinSvc, MA_IMAGES) {
     return {
         restrict: 'A',
         scope: {
-            row: '='
+            user: '='
         },
         template: coinsTpl,
         link: function (scope, element, attrs, controller) {
@@ -14,10 +14,15 @@ export var CoinComponent = function($timeout, CoinSvc, MA_IMAGES) {
             shuffle(maImages)
 
             var selectedImages = maImages.splice(0,3)
-            scope.coins =  selectedImages.map(function(item) { return {image: item} })
+            var coins = selectedImages.map(function(item) { return {user: scope.user, image: item, revealed: false} })
 
+            // Make 1 empty coin
+            coins[0].user = null
+            shuffle(coins)
+
+            scope.coins = coins
             scope.reveal = (coin) => {
-
+                coin.revealed = true
             }
         }
     }

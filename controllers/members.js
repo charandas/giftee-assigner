@@ -5,20 +5,17 @@ export var MembersCtrl =
     $http,
     $firebaseAuth,
     $firebaseObject,
+    $stateParams,
     FIREBASE_ROOT_URL,
     LxDialogService,
     LxNotificationService,
+    UsersFactory,
     CoinSvc) {
 
-  var ref = new Firebase(FIREBASE_ROOT_URL + '/users');
-  var obj = $firebaseObject(ref);
-
-  obj.$bindTo($scope, 'users')
-
-  this.action = (user) => {
-    if (!user.taken)
-      user.taken = true
-  }
+  this.randomUserPromise = UsersFactory.getRandomUser($stateParams.player)
+  .then((user) => {
+    this.userToAssign = user
+  })
 
   this.opendDialog = (dialogId) => {
     console.log('Opened ' + dialogId)
@@ -29,16 +26,16 @@ export var MembersCtrl =
     LxNotificationService.info('Dialog closed!')
   }
 
-  console.log(CoinSvc)
-
 }
 
 MembersCtrl.$inject = ['$scope',
   '$http',
   '$firebaseAuth',
   '$firebaseObject',
+  '$stateParams',
   'FIREBASE_ROOT_URL',
   'LxDialogService',
   'LxNotificationService',
+  'UsersFactory',
   'CoinSvc'
 ]

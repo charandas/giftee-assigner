@@ -1,5 +1,6 @@
 <div flex-item-align="center" flex-container="row" class="mt++">
     <div ng-repeat="coin in coins" ng-click="reveal(coin)" class="circular text-center aligner mr++">
-        <img ng-src="{{coin.image}}"></img>
+        <img ng-hide="coin.revealed" ng-src="{{coin.image}}"></img>
+        <span class="fs-title display-block" ng-show="coin.revealed">{{coin.user.name || 'Oops'}}</span>
     </div>
 </div>

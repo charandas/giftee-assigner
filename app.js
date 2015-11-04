@@ -7,6 +7,7 @@ import angular from 'angular'
 import 'angular-animate'
 import 'angular-ui-router'
 import 'angularfire'
+import 'github:cgross/angular-busy@4.1.3'
 
 import 'github:lumapps/lumX@0.3.95/dist/lumx.min'
 
@@ -17,6 +18,7 @@ import {AppCtrl} from 'controllers/app'
 import {MembersCtrl} from 'controllers/members'
 import {CoinComponent} from 'components/coin'
 import {CoinSvc} from 'components/coinSvc'
+import {UsersFactory} from 'factories/users'
 
 
 export var app = angular.module('gifteeApp',
@@ -24,7 +26,8 @@ export var app = angular.module('gifteeApp',
         'ngAnimate',
         'lumx',
         'ui.router',
-        'firebase'
+        'firebase',
+        'cgBusy'
 
     ]).config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/')
@@ -38,7 +41,7 @@ export var app = angular.module('gifteeApp',
                 }
             )
             .state('members', {
-                    url: '/members',
+                    url: '/members/{player}',
                     template: membersTpl,
                     controller: MembersCtrl,
                     controllerAs: 'vm'
@@ -58,8 +61,16 @@ export var app = angular.module('gifteeApp',
         ]
         .map(function(item) {return 'http://res.cloudinary.com/city-corridor/image/upload/v1446662780/' + item})
     )
+    .factory('UsersFactory', UsersFactory)
     .factory('CoinSvc', CoinSvc)
     .directive('coinComponent', CoinComponent)
+    .value('cgBusyDefaults', {
+        message: '',
+        backdrop: true,
+        templateUrl: 'components/busyTpl.html',
+        delay: 0,
+        minDuration: 0
+    });
 
 $(document).ready(() => {
 
