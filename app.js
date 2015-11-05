@@ -13,9 +13,12 @@ import 'github:lumapps/lumX@0.3.95/dist/lumx.min'
 
 import appTpl from 'views/app.html!text'
 import membersTpl from 'views/members.html!text'
+import finishTpl from 'views/finish.html!text'
 
 import {AppCtrl} from 'controllers/app'
 import {MembersCtrl} from 'controllers/members'
+import {FinishCtrl} from 'controllers/finish'
+
 import {CoinComponent} from 'components/coin'
 import {CoinSvc} from 'components/coinSvc'
 import {UsersFactory} from 'factories/users'
@@ -40,10 +43,17 @@ export var app = angular.module('gifteeApp',
                     controllerAs: 'vm'
                 }
             )
-            .state('members', {
-                    url: '/members/{player}',
+            .state('game', {
+                    url: '/game/{player}',
                     template: membersTpl,
                     controller: MembersCtrl,
+                    controllerAs: 'vm'
+                }
+            )
+            .state('finish', {
+                    url: '/finish/{player}',
+                    template: finishTpl,
+                    controller: FinishCtrl,
                     controllerAs: 'vm'
                 }
             )

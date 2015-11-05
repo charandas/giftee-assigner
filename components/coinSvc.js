@@ -7,7 +7,6 @@ export var CoinSvc = function(UsersFactory, $q) {
                 .then(function(userProfile) {
                     if (!userProfile.assigned) {
                         userProfile['assigned'] = user
-                        console.log(userProfile)
                         return userProfile.$save()
                     } else {
                         return $q.reject(toAssign.name + ' got assigned to someone else. Try again.')
@@ -18,6 +17,6 @@ export var CoinSvc = function(UsersFactory, $q) {
                 })
         }
     }
-}   
+}
 
 CoinSvc.$inject = ['UsersFactory', '$q']

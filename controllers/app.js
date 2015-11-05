@@ -1,4 +1,6 @@
-export var AppCtrl = function ($scope, $state, $http, $firebaseObject, FIREBASE_ROOT_URL) {
+export var AppCtrl = function ($scope, $state, $http, $firebaseObject, UsersFactory, FIREBASE_ROOT_URL) {
+
+    var self = this
 
     this.player = null
     this.password = null
@@ -8,18 +10,35 @@ export var AppCtrl = function ($scope, $state, $http, $firebaseObject, FIREBASE_
 
     $scope.toCompare.$loaded()
     .then(function() {
-        console.log($scope.toCompare)
     })
     .catch(function(err) {
         console.error(err)
     })
 
     this.login = () => {
-        if (this.password === $scope.toCompare.$value) {
-            $state.go('members', {player: this.player.toLowerCase()})
-        }
+        this.isLoggingIn = UsersFactory.users()
+            .then((users) => {
+                console.log(users)
+                var user
+                var giftee
+                for (let key in users) {
+                    if (!key.startsWith('$')) {
+                        if (users[key].assigned && (users[key].assigned.toLowerCase() === self.player.toLowerCase()))
+                            giftee = users[key]
+                        else if(self.player.toLowerCase() === key.toLowerCase()) {
+                            user = key
+                        }
+                    }
+                }
+
+                if (!user || giftee ) {
+                    $state.go('finish', {player: self.player})
+                } else if (this.password === $scope.toCompare.$value) {
+                    $state.go('game', {player: self.player.toLowerCase()})
+                }
+            })
     }
 
 }
 
-AppCtrl.$inject = ['$scope', '$state', '$http', '$firebaseObject', 'FIREBASE_ROOT_URL']
+AppCtrl.$inject = ['$scope', '$state', '$http', '$firebaseObject', 'UsersFactory', 'FIREBASE_ROOT_URL']

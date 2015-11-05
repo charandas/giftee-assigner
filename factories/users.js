@@ -2,10 +2,23 @@ export var UsersFactory = function($q, $firebaseObject, $timeout, FIREBASE_ROOT_
 
     var user = function(username) {
       // create a reference to the database node where we will store our data
-      var ref = new Firebase(FIREBASE_ROOT_URL + '/users/' + username.toUpperCase());
+      var ref = new Firebase(FIREBASE_ROOT_URL + '/users/');
       var profileRef = ref.child(username);
 
       var obj = $firebaseObject(profileRef);
+      var deferred = $q.defer()
+      obj.$loaded(() => {
+        deferred.resolve(obj)
+      })
+
+      return deferred.promise
+    }
+
+    var users = function() {
+      // create a reference to the database node where we will store our data
+      var ref = new Firebase(FIREBASE_ROOT_URL + '/users/');
+
+      var obj = $firebaseObject(ref);
       var deferred = $q.defer()
       obj.$loaded(() => {
         deferred.resolve(obj)
@@ -27,7 +40,6 @@ export var UsersFactory = function($q, $firebaseObject, $timeout, FIREBASE_ROOT_
             })
 
             shuffle(keys)
-            console.log(keys[0])
             deferred.resolve($firebaseObject(ref.child(keys[0])))
 
 
@@ -58,6 +70,7 @@ export var UsersFactory = function($q, $firebaseObject, $timeout, FIREBASE_ROOT_
 
     return  {
         user: user,
+        users: users,
         getRandomUser: getRandomUser
     }
 

@@ -9,10 +9,12 @@ export var CoinComponent = function() {
             user: '='
         },
         template: coinsTpl,
-        controller: ['$scope', '$q', '$timeout', 'UsersFactory', 'CoinSvc', 'LxNotificationService', 'MA_IMAGES',
-        function($scope, $q, $timeout, UsersFactory, CoinSvc, LxNotificationService, MA_IMAGES) {
+        controller: ['$scope', '$q', '$timeout', '$state', 'UsersFactory', 'CoinSvc', 'LxNotificationService', 'MA_IMAGES',
+        function($scope, $q, $timeout, $state, UsersFactory, CoinSvc, LxNotificationService, MA_IMAGES) {
 
             var reloadCoins = function(userToAssign) {
+
+                $scope.userToAssign = null
 
                 var deferred = $q.defer()
 
@@ -20,7 +22,6 @@ export var CoinComponent = function() {
                     .then((user) => {
 
                         $scope.userToAssign = user.name
-                        console.log($scope.userToAssign + ":" + user.name)
                         $scope.coins = shuffleCoins(user.name)
 
                         deferred.resolve()
@@ -65,6 +66,9 @@ export var CoinComponent = function() {
                 $scope.inProgress = CoinSvc.recordAttempt($scope.user, coin.user)
                     .then(function() {
                         LxNotificationService.info(coin.user + ' was successfully assigned to you')
+                        $timeout(function() {
+                            $state.go('finish', {player: $scope.user}, {location: 'replace'})
+                        })
                     })
                     .catch(function (reason) {
                         LxNotificationService.error(reason)
