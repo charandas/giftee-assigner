@@ -18197,9 +18197,9 @@ html, body, #container {
 
 .caption {
   position: relative;
-  height: 600px;
+  height: 300px;
   overflow: hidden;
-  width: 200px; }
+  width: 250px; }
 
 .caption__media {
   display: block;
