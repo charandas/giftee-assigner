@@ -18,7 +18,6 @@ export var AppCtrl = function ($scope, $state, $http, $firebaseObject, UsersFact
     this.login = () => {
         this.isLoggingIn = UsersFactory.users()
             .then((users) => {
-                console.log(users)
                 var user
                 var giftee
                 for (let key in users) {

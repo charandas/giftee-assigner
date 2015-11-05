@@ -1,18 +1,18 @@
 <div id="login-container" flex-align="center" flex-container="column" flex-align="space-between center">
     <div flex-item-align="center" flex-container="row" class="mt++">
-        <span class="fs-display-2 display-block">Secret Ma App</span>
+        <span style="cursor: default;" class="fs-display-2 display-block">Secret Ma App</span>
     </div>
 
     <div cg-busy="vm.loading" class="mt++" flex-container="column" flex-align="space-between center" flex-item-align="center">
 
         <div ng-if="vm.user && vm.giftee" flex-item flex-item-align="center">
-            <span class="aligner fs-headline display-block">Your giftee is {{vm.giftee}}.</span>
-            <span class="aligner fs-headline display-block">You can bookmark this page if you like.</span>
+            <span style="cursor: default;" class="aligner fs-headline display-block">Your <em>Secret Friend</em> is {{vm.giftee}}.</span>
+            <span style="cursor: default;" class="aligner fs-headline display-block">You can bookmark this page if you like.</span>
         </div>
 
         <div ng-if="!vm.user || !vm.giftee" flex-item flex-item-align="center">
-            <span class="aligner fs-headline display-block">You never played this game.</span>
-            <span class="aligner fs-headline display-block">Did you?</span>
+            <span style="cursor: default;" class="aligner fs-headline display-block">You never played this game.</span>
+            <span style="cursor: default;" class="aligner fs-headline display-block">Did you?</span>
         </div>
     </div>
 </div>

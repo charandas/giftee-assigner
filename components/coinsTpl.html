@@ -2,8 +2,6 @@
     <div ng-if="userToAssign" ng-repeat="coin in coins" ng-click="reveal(coin)" class="caption text-center mr++">
         <img class="caption__media" ng-src="{{coin.image}}" />
         <div class="caption__overlay" ng-class="{'show-it': coin.revealed}">
-            <p class="caption__overlay__title">{{coin.user || 'Couldn\'t be' }}</p>
-            <h1 class="caption__overlay__content">{{message(coin)}}</h1>
         </div>
     </div>
 </div>

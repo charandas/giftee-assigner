@@ -14,8 +14,6 @@ export var CoinComponent = function() {
 
             var reloadCoins = function(userToAssign) {
 
-                $scope.userToAssign = null
-
                 var deferred = $q.defer()
 
                 UsersFactory.getRandomUser($scope.user)
@@ -55,17 +53,24 @@ export var CoinComponent = function() {
 
                 if (!coin.user) {
                     count = 0
+                    $scope.userToAssign = null
+                    LxNotificationService.info('Reloading game since you picked the playful Ma...')
 
-                    $scope.inProgress = reloadCoins()
+                    $timeout(function() {
+                        $scope.inProgress = reloadCoins()
+                    }, 3000)
 
                     return
                 }
                 count++
-                if (count < 2)  return
+                if (count < 2) {
+                    LxNotificationService.info('Your giftee could be: ' + coin.user + ' if you get \'em one more time')
+                    return
+                }
 
                 $scope.inProgress = CoinSvc.recordAttempt($scope.user, coin.user)
                     .then(function() {
-                        LxNotificationService.info(coin.user + ' was successfully assigned to you')
+                        LxNotificationService.success(coin.user + ' was successfully assigned to you')
                         $timeout(function() {
                             $state.go('finish', {player: $scope.user}, {location: 'replace'})
                         })

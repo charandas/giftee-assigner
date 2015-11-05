@@ -4,7 +4,7 @@ body {
 
 html, body, #container {
     height: 100%;
-    background-color: $blue-grey-300;
+    background-color: $orange-300;
 }
 
 .element::-webkit-scrollbar { width: 0 !important }
@@ -37,22 +37,6 @@ html, body, #container {
     &:hover {
       transform: scale(.9);
     }
-}
-.caption__overlay {
-    position: absolute;
-    font-size: 1rem;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 10px;
-    color: white;
-    transform: translateY(100%);
-    transition: transform .35s ease-out;
-}
-
-.caption__overlay.show-it {
-    transform: translateY(50%);
 }
 
 .aligner {
