@@ -3,18 +3,22 @@ export var CoinSvc = function(UsersFactory, $q) {
     return {
         recordAttempt: function(user, toAssign) {
 
-            return UsersFactory.user(toAssign)
+            var deferred = $q.defer()
+
+            UsersFactory.user(toAssign)
                 .then(function(userProfile) {
                     if (!userProfile.assigned) {
                         userProfile['assigned'] = user
-                        return userProfile.$save()
+                        deferred.resolve(userProfile.$save())
                     } else {
-                        return $q.reject(toAssign.name + ' got assigned to someone else. Try again.')
+                        deferred.reject(toAssign + ' just got assigned to someone else. Try again.')
                     }
                 })
                 .catch(function(reason) {
-                    $q.reject('Could not fetch user: ' + toAssign)
+                    deferred.reject('Could not fetch user: ' + toAssign)
                 })
+
+            return deferred.promise
         }
     }
 }
