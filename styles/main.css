@@ -18186,11 +18186,17 @@ html, body, #container {
   height: 100%;
   background-color: #FFB74D; }
 
-.element::-webkit-scrollbar {
-  width: 0 !important; }
+.card {
+  max-width: 50%; }
 
-#login-container, #game-container, #finish-container {
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important; }
+
+#login-container {
   height: 75%; }
+
+#game-container, #finish-container {
+  height: 100%; }
 
 .caption {
   position: relative;
@@ -18207,11 +18213,11 @@ html, body, #container {
   margin: 25px;
   transition: -webkit-transform 0.5s ease;
   transition: transform 0.5s ease;
-  -webkit-transform: scale(0.8);
-  transform: scale(0.8); }
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7); }
   .caption__media:hover {
-    -webkit-transform: scale(0.9);
-    transform: scale(0.9); }
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8); }
 
 .aligner {
   display: -webkit-flex;
