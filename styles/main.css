@@ -18189,11 +18189,8 @@ html, body, #container {
 .element::-webkit-scrollbar {
   width: 0 !important; }
 
-#login-container {
+#login-container, #game-container, #finish-container {
   height: 75%; }
-
-#game-container {
-  height: 100%; }
 
 .caption {
   position: relative;
