@@ -1,7 +1,5 @@
 <div cg-busy="inProgress" flex-item-align="center" flex-container="row" class="mt++">
-    <div ng-if="userToAssign" ng-repeat="coin in coins" ng-click="reveal(coin)" class="caption text-center mr++">
+    <div ng-if="userToAssign" ng-repeat="coin in coins" ng-click="reveal(coin)" ng-class="{'revealed': coin.revealed}" class="caption text-center mr++">
         <img class="caption__media" ng-src="{{coin.image}}" />
-        <div class="caption__overlay" ng-class="{'show-it': coin.revealed}">
-        </div>
     </div>
 </div>
