@@ -1,9 +1,9 @@
-<div id="finish-container" flex-align="center" flex-container="column" flex-align="space-between center">
-    <div flex-item-align="center" flex-container="row" class="mt++">
+<div id="finish-container" flex-container="column" flex-align="center">
+    <div flex-item-align="center" flex-container="row" class="mt+++">
         <span style="cursor: default;" class="fs-display-2 display-block">Secret Ma App</span>
     </div>
 
-    <div cg-busy="vm.loading" class="mt++" flex-container="row" flex-align="space-between center" flex-item-align="center">
+    <div cg-busy="vm.loading" class="mt++" flex-container="row" flex-align="center" flex-item-align="center">
 
         <div ng-if="vm.user && vm.giftee" flex-item flex-item-align="center">
             <span style="cursor: default;" class="aligner fs-headline display-block">Your Secret Friend is {{vm.giftee}}.</span>
@@ -16,9 +16,9 @@
         </div>
     </div>
 
-    <div flex-container="row" flex-align="space-between center" flex-gutter="24">
-        <div><div style="cursor: default;" class="p+ bgc-red-500">Recap: Rules of the Game</div></div>
-        <div class="tc-white-1 ml+++ mr+++ mt++ p+">
+    <div flex-container="row" flex-align="center">
+
+        <div class="card tc-black-2 mt++ p+">
             <span style="cursor: default;" fs-title display-block>
                 The Mother answers our deepest longing. But we are all Ma! So get your Ma on and take a turn at answering the deepest longing of your Friendsgiving <em>Secret Friend</em>.<br/><br/>
 
@@ -26,8 +26,9 @@
 
                 All gifts will remain anonymous, or you could say, polymous because Ma is everywhere and all gifts come from her.  So be sure to wrap your gift and put your Secret Friend's name on it, but not your name.<br/><br/>
 
+                See you at Friendsgiving!
             </span>
         </div>
-        <div><div style="cursor: default;" class="p+ bgc-green-500">See you at Friendsgiving!</div></div>
+
     </div>
 </div>

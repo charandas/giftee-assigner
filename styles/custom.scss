@@ -7,11 +7,20 @@ html, body, #container {
     background-color: $orange-300;
 }
 
-.element::-webkit-scrollbar { width: 0 !important }
+.card {
+  max-width: 50%;
+}
 
-// TODO: this is a hack
-#login-container, #game-container, #finish-container {
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
+}
+
+#login-container {
     height: 75%;
+}
+
+#game-container, #finish-container {
+    height: 100%;
 }
 
 .caption {
@@ -28,10 +37,10 @@ html, body, #container {
     border-radius: 50%;
     margin: 25px;
     transition: transform 0.5s ease;
-    transform: scale(0.8);
+    transform: scale(0.7);
 
     &:hover {
-      transform: scale(.9);
+      transform: scale(.8);
     }
 }
 
