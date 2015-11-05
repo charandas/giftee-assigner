@@ -1,30 +1,85 @@
 import coinsTpl from './coinsTpl.html!text'
 import angular from 'angular'
 
-export var CoinComponent = function($timeout, CoinSvc, MA_IMAGES) {
+export var CoinComponent = function() {
+
     return {
         restrict: 'A',
         scope: {
             user: '='
         },
         template: coinsTpl,
-        link: function (scope, element, attrs, controller) {
+        controller: ['$scope', '$q', '$timeout', 'UsersFactory', 'CoinSvc', 'LxNotificationService', 'MA_IMAGES',
+        function($scope, $q, $timeout, UsersFactory, CoinSvc, LxNotificationService, MA_IMAGES) {
 
-            var maImages = angular.copy(MA_IMAGES)
-            shuffle(maImages)
+            var reloadCoins = function(userToAssign) {
 
-            var selectedImages = maImages.splice(0,3)
-            var coins = selectedImages.map(function(item) { return {user: scope.user, image: item, revealed: false} })
+                var deferred = $q.defer()
 
-            // Make 1 empty coin
-            coins[0].user = null
-            shuffle(coins)
+                UsersFactory.getRandomUser($scope.user)
+                    .then((user) => {
 
-            scope.coins = coins
-            scope.reveal = (coin) => {
-                coin.revealed = true
+                        $scope.userToAssign = user.name
+                        console.log($scope.userToAssign + ":" + user.name)
+                        $scope.coins = shuffleCoins(user.name)
+
+                        deferred.resolve()
+                    })
+
+                return deferred.promise
             }
-        }
+
+            var shuffleCoins = function(userToAssign) {
+                var maImages = angular.copy(MA_IMAGES)
+                shuffle(maImages)
+
+                var selectedImages = maImages.splice(0,3)
+                var coins = selectedImages.map(function(item) { return {user: userToAssign, image: item, revealed: false} })
+
+                // Make 1 empty coin
+                coins[0].user = null
+                shuffle(coins)
+
+                return coins
+            }
+
+            var count = 0
+
+            $scope.inProgress = reloadCoins()
+            $scope.reveal = (coin) => {
+
+                if (coin.revealed) return
+
+                coin.revealed = true
+
+                if (!coin.user) {
+                    count = 0
+
+                    $scope.inProgress = reloadCoins()
+
+                    return
+                }
+                count++
+                if (count < 2)  return
+
+                $scope.inProgress = CoinSvc.recordAttempt($scope.user, coin.user)
+                    .then(function() {
+                        LxNotificationService.info(coin.user + ' was successfully assigned to you')
+                    })
+                    .catch(function (reason) {
+                        LxNotificationService.error(reason)
+                    })
+            }
+
+            $scope.message = function(coin) {
+                    if (coin.user) {
+                        return count < 2 ? 'Before we confirm, try one more': 'Succeeded'
+                    } else {
+                        return 'Please try again'
+                    }
+
+                }
+        }]
     }
 }
 
@@ -47,4 +102,4 @@ function shuffle(array) {
   return array;
 }
 
-CoinComponent.$inject = ['$timeout', 'CoinSvc', 'MA_IMAGES']
+CoinComponent.$inject = []

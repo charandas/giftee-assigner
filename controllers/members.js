@@ -12,19 +12,7 @@ export var MembersCtrl =
     UsersFactory,
     CoinSvc) {
 
-  this.randomUserPromise = UsersFactory.getRandomUser($stateParams.player)
-  .then((user) => {
-    this.userToAssign = user
-  })
-
-  this.opendDialog = (dialogId) => {
-    console.log('Opened ' + dialogId)
-    LxDialogService.open(dialogId);
-  }
-
-  this.closingDialog = () => {
-    LxNotificationService.info('Dialog closed!')
-  }
+  this.user = $stateParams.player
 
 }
 

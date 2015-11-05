@@ -3,7 +3,7 @@
         <span class="aligner fs-display-2 display-block">Secret Ma App</span>
     </div>
 
-    <div cg-busy="vm.randomUserPromise" flex-item-align="center" flex-container="row" class="mt++" user="vm.userToAssign">
-        <div ng-if="vm.userToAssign" coin-component user="vm.userToAssign"></div>
+    <div flex-item-align="center" flex-container="row" class="mt++" user="vm.userToAssign">
+        <div coin-component user="vm.user" user-to-assign="vm.userToAssign.name"></div>
     </div>
 </div>

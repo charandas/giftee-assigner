@@ -1,17 +1,23 @@
-export var CoinSvc = function(UsersFactory) {
+export var CoinSvc = function(UsersFactory, $q) {
 
     return {
-        recordAttempt: function(user, assigned) {
-            var userProfile = UsersFactory.user(user)
-            console.dir(userProfile)
+        recordAttempt: function(user, toAssign) {
 
-            userProfile[assigned] = userProfile[assigned] || 0
-            userProfile[assigned]++
-
-            console.log(user + ":" + assigned + ":" + userProfile[assigned])
-
+            return UsersFactory.user(toAssign)
+                .then(function(userProfile) {
+                    if (!userProfile.assigned) {
+                        userProfile['assigned'] = user
+                        console.log(userProfile)
+                        return userProfile.$save()
+                    } else {
+                        return $q.reject(toAssign.name + ' got assigned to someone else. Try again.')
+                    }
+                })
+                .catch(function(reason) {
+                    $q.reject('Could not fetch user: ' + toAssign)
+                })
         }
     }
-}
+}   
 
-CoinSvc.$inject = ['UsersFactory']
+CoinSvc.$inject = ['UsersFactory', '$q']

@@ -5,8 +5,13 @@ export var UsersFactory = function($q, $firebaseObject, $timeout, FIREBASE_ROOT_
       var ref = new Firebase(FIREBASE_ROOT_URL + '/users/' + username.toUpperCase());
       var profileRef = ref.child(username);
 
-      // return it as a synchronized object
-      return $firebaseObject(profileRef);
+      var obj = $firebaseObject(profileRef);
+      var deferred = $q.defer()
+      obj.$loaded(() => {
+        deferred.resolve(obj)
+      })
+
+      return deferred.promise
     }
 
     var getRandomUser = function(player) {
@@ -22,6 +27,7 @@ export var UsersFactory = function($q, $firebaseObject, $timeout, FIREBASE_ROOT_
             })
 
             shuffle(keys)
+            console.log(keys[0])
             deferred.resolve($firebaseObject(ref.child(keys[0])))
 
 

@@ -18,46 +18,41 @@ html, body, #container {
     height: 100%;
 }
 
-/*.coin {
-    background: $yellow-300;
-    width: 100px;
-    height: 100px;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;    
-}*/
-
-.circular {
-    flex-grow: 1;
-    flex-shrink: 2;
-    flex-basis: 200px;
+.caption {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
     width: 200px;
-    //height:200px;
-    border-radius:50%;
-    margin:25px;
+}
+.caption__media {
+    display: block;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    margin: 25px;
+    transition: transform 0.5s ease;
+    transform: scale(0.8);
+
+    &:hover {
+      transform: scale(.9);
+    }
+}
+.caption__overlay {
+    position: absolute;
+    font-size: 1rem;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    color: white;
+    transform: translateY(100%);
+    transition: transform .35s ease-out;
 }
 
-.circular img {
-  border-radius:50%;
-  transition: transform 0.5s ease;
-  transform: scale(0.8);
-
-  .ng-hide-add { animation:0.5s lightSpeedOut ease; }
-
-  .ng-hide-remove { animation:0.5s flipInX ease; }
-}
-
-.circular span {
-  .ng-hide-add { animation:0.5s lightSpeedOut ease; }
-
-  .ng-hide-remove { animation:0.5s flipInX ease; }
-}
-
-.circular img:hover {
-  transform: scale(.9);
-  /*
-  transition: all 400ms cubic-bezier(0.250, 0.460, 0.450, 0.940);
-  */
+.caption__overlay.show-it {
+    transform: translateY(50%);
 }
 
 .aligner {

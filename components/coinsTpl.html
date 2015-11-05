@@ -1,6 +1,9 @@
-<div flex-item-align="center" flex-container="row" class="mt++">
-    <div ng-repeat="coin in coins" ng-click="reveal(coin)" class="circular text-center aligner mr++">
-        <img ng-hide="coin.revealed" ng-src="{{coin.image}}"></img>
-        <span class="fs-title display-block" ng-show="coin.revealed">{{coin.user.name || 'Oops'}}</span>
+<div cg-busy="inProgress" flex-item-align="center" flex-container="row" class="mt++">
+    <div ng-if="userToAssign" ng-repeat="coin in coins" ng-click="reveal(coin)" class="caption text-center mr++">
+        <img class="caption__media" ng-src="{{coin.image}}" />
+        <div class="caption__overlay" ng-class="{'show-it': coin.revealed}">
+            <p class="caption__overlay__title">{{coin.user || 'Couldn\'t be' }}</p>
+            <h1 class="caption__overlay__content">{{message(coin)}}</h1>
+        </div>
     </div>
 </div>
