@@ -16,12 +16,12 @@ gulp.task('default',[]);
 gulp.task('jsBundle', function() {
 
     var builder = new Builder({
-        baseURL: 'file:' + path.resolve('./client')
+        baseURL: 'file:' + path.resolve('./')
     });
 
-    return builder.loadConfig('./client/config.js')
+    return builder.loadConfig('./config.js')
     .then(function() {
-        builder.buildSFX('js/main', './client/build.js', { minify: true })
+        builder.buildStatic('app', './build.js', { minify: true })
         .then(function() {
             console.log('Build complete');
         })
