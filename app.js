@@ -61,7 +61,7 @@ export var app = angular.module('gifteeApp',
     ).run(function() {
         console.log('Running...')
     })
-    .constant('FIREBASE_ROOT_URL', 'https://giftee-app.firebaseio.com/')
+    .constant('FIREBASE_ROOT_URL', 'https://giftee-app-stg.firebaseio.com/')
     .constant('MA_IMAGES', [
             'anandamayi1_eusyna.jpg',
             'anandamayi2_fgsg4n.jpg',
