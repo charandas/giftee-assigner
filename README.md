@@ -5,6 +5,9 @@ An app for friendsgiving
 
 ```bash
 npm install
+npm install -g jspm
+npm install -g http-server
+
 jspm install
 gulp styles
 gulp jsBundle
