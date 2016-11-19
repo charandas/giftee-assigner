@@ -4,11 +4,10 @@ An app for friendsgiving
 ## Steps to running
 
 ```bash
-npm install
 npm install -g jspm
 npm install -g http-server
 
-jspm install
+npm install
 gulp styles
 gulp jsBundle
 
